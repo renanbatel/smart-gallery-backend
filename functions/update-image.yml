@@ -1,0 +1,9 @@
+updateImage:
+  name: updateImage-${self:provider.stage}
+  handler: src/update-image.apiGatewayHandler
+  events:
+    - http:
+        path: /images/{id}
+        method: patch
+        cors: true
+        authorizer: aws_iam

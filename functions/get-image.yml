@@ -1,0 +1,9 @@
+getImage:
+  name: getImage-${self:provider.stage}
+  handler: src/get-image.apiGatewayHandler
+  events:
+    - http:
+        path: /images/{id}
+        method: get
+        cors: true
+        authorizer: aws_iam

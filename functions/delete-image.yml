@@ -1,0 +1,9 @@
+deleteImage:
+  name: deleteImage-${self:provider.stage}
+  handler: src/delete-image.apiGatewayHandler
+  events:
+    - http:
+        path: /images/{id}
+        method: delete
+        cors: true
+        authorizer: aws_iam

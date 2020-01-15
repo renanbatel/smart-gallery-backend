@@ -1,0 +1,24 @@
+service: smart-gallery-backend
+package:
+  individually: true
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+custom:
+  webpack:
+    webpackConfig: 'webpack.config.js'
+    packager: 'yarn'
+    includeModules: true
+
+functions:
+  - ${file(functions/create-image.yml)}
+  - ${file(functions/delete-image.yml)}
+  - ${file(functions/get-image.yml)}
+  - ${file(functions/get-images.yml)}
+  - ${file(functions/update-image.yml)}

@@ -1,0 +1,9 @@
+createImage:
+  name: createImage-${self:provider.stage}
+  handler: src/create-image.apiGatewayHandler
+  events:
+    - http:
+        path: /images
+        method: post
+        cors: true
+        authorizer: aws_iam
