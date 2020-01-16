@@ -1,0 +1,19 @@
+version: '3.7'
+
+services: 
+
+  database:
+    image: mysql:5.6
+    container_name: smart-gallery_database
+    environment: 
+      MYSQL_ROOT_PASSWORD: passwd
+      MYSQL_USER: smartgallery
+      MYSQL_PASSWORD: smartgallery
+      MYSQL_DATABASE: smartgallery_development
+    ports: 
+      - '3306:3306'
+    volumes: 
+      - 'database:/var/lib/mysql'
+
+volumes: 
+  database:
