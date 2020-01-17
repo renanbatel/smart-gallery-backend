@@ -18,7 +18,7 @@ custom:
 
 functions:
   - ${file(functions/create-image.yml)}
-  - ${file(functions/delete-image.yml)}
-  - ${file(functions/get-image.yml)}
-  - ${file(functions/get-images.yml)}
-  - ${file(functions/update-image.yml)}
+  # - ${file(functions/delete-image.yml)}
+  # - ${file(functions/get-image.yml)}
+  # - ${file(functions/get-images.yml)}
+  # - ${file(functions/update-image.yml)}

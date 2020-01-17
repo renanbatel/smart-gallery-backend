@@ -9,15 +9,15 @@ const isLocal = slsw.lib.webpack.isLocal;
 module.exports = {
   mode: isLocal ? 'development' : 'production',
   entry: slsw.lib.entries,
-  externals: [nodeExternals()],
+  externals: [nodeExternals(), 'aws-sdk'],
   devtool: 'source-map',
   resolve: {
-    extensions: [ '.js', '.jsx', '.json', '.ts', '.tsx' ]
+    extensions: ['.js', '.json', '.ts'],
   },
   output: {
     libraryTarget: 'commonjs2',
     path: path.join(__dirname, '.webpack'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   target: 'node',
   module: {
@@ -30,13 +30,20 @@ module.exports = {
           {
             loader: 'cache-loader',
             options: {
-              cacheDirectory: path.resolve('.cache')
-            }
+              cacheDirectory: path.resolve('.cache'),
+            },
           },
-          'babel-loader'
-        ]
-      }
-    ]
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: path.join(__dirname, 'tsconfig.json'),
+              transpileOnly: true,
+            },
+          },
+        ],
+      },
+    ],
   },
-  plugins: [new ForkTsCheckerWebpackPlugin()]
+  plugins: [new ForkTsCheckerWebpackPlugin()],
 };
