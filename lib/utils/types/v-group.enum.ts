@@ -1,0 +1,12 @@
+export enum VGroup {
+  CREATE = 1,
+  READ,
+  UPDATE,
+  DELETE,
+  CRUD,
+  EXCEPT_CREATE,
+  EXCEPT_READ,
+  EXCEPT_UPDATE,
+  EXCEPT_DELETE,
+  CREATE_UPDATE,
+}
