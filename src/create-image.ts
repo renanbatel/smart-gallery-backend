@@ -2,10 +2,11 @@ import { APIGatewayProxyEvent } from '../lib/aws/types/aws-lambda.interface';
 import { getRepository } from '../lib/db';
 import { middy } from '../lib/middy';
 import { validateSchema } from '../lib/middy/middlewares';
-import { CreateImageDTO } from './dto';
+import { VGroup } from '../lib/utils';
+import { ImageDTO } from './dto';
 import { Image } from './models';
 
-export async function createImage(data: CreateImageDTO) {
+export async function createImage(data: ImageDTO) {
   const repository = await getRepository<Image>(Image);
   const image = new Image();
 
@@ -19,10 +20,10 @@ export async function createImage(data: CreateImageDTO) {
   return repository.save(image);
 }
 
-export async function createImageApiGatewayHandler(event: APIGatewayProxyEvent<CreateImageDTO>) {
+export async function createImageApiGatewayHandler(event: APIGatewayProxyEvent<ImageDTO>) {
   const body = await createImage(event.bodyValidated);
 
   return { body };
 }
 
-export const apiGatewayHandler = middy(createImageApiGatewayHandler).use(validateSchema(CreateImageDTO));
+export const apiGatewayHandler = middy(createImageApiGatewayHandler).use(validateSchema(ImageDTO, VGroup.CREATE));

@@ -1,1 +1,1 @@
-export * from './create-image.dto';
+export * from './image.dto';
