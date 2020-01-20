@@ -19,7 +19,7 @@ export class CreateImageDTO {
   labels?: string[];
 
   @IsString()
-  @IsByteLength(93, 98)
+  @IsByteLength(46, 47)
   @IsImageFilename()
   filename: string;
 

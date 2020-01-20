@@ -14,9 +14,9 @@ export function IsImageFilename(validationOptions?: ValidationOptions) {
       validator: {
         validate(value: any, args: ValidationArguments) {
           const validator = new Validator();
-          const [userGuid, imageGuid] = value.split('_image_');
+          const imageGuid = value.replace('image_', '');
 
-          return validator.isUUID(userGuid.split(':')[1], '4') && validator.isUUID(imageGuid.split('.')[0], '4');
+          return validator.isUUID(imageGuid.split('.')[0], '4');
         },
       },
     });

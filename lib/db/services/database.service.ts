@@ -1,4 +1,5 @@
 import { Connection, createConnection, EntitySchema, Repository } from 'typeorm';
+import uuid from 'uuid';
 
 import { Image } from '../../../src/models';
 
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV === 'production') {
   // TODO
 } else {
   Object.assign(config, {
+    name: uuid.v1(),
     host: 'localhost',
     port: 3306,
     username: 'smartgallery',
