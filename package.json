@@ -5,7 +5,7 @@
   "scripts": {
     "docker:up": "docker-compose up -d",
     "docker:clean": "docker-compose down && docker volume rm smart-gallery-backend_database",
-    "local": "sls slstats --disable && sls offline start --stage=local --port=3000",
+    "local": "sls slstats --disable && sls offline start --stage=local --port=3000 --skipCacheInvalidation",
     "lint": "eslint --quiet '**/*.{t,j}s'",
     "format": "eslint --quiet --fix '**/*.{t,j}s'",
     "migration": "./scripts/migration-run.sh",
