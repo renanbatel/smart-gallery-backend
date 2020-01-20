@@ -1,4 +1,4 @@
-CREATE TABLE `images` (
+CREATE TABLE `image` (
   `id` varchar(36) NOT NULL,
   `userId` varchar(52) NOT NULL,
   `title` varchar(255) NOT NULL,
