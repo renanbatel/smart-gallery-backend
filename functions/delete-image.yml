@@ -3,7 +3,7 @@ deleteImage:
   handler: src/delete-image.apiGatewayHandler
   events:
     - http:
-        path: /images/{id}
+        path: /images/{imageId}
         method: delete
         cors: true
         authorizer: aws_iam

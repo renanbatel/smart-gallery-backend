@@ -5,11 +5,18 @@ import { validateSchema } from '../lib/middy/middlewares';
 import { CreateImageDTO } from './dto';
 import { Image } from './models';
 
-export async function createImage(image: CreateImageDTO) {
+export async function createImage(data: CreateImageDTO) {
   const repository = await getRepository<Image>(Image);
-  const data = await repository.save(image);
+  const image = new Image();
 
-  return repository.findOne(data.id);
+  // TODO: get user id from request
+  image.userId = 'foo';
+  image.title = data.title;
+  image.description = data.description || null;
+  image.labels = data.labels || null;
+  image.filename = data.filename;
+
+  return repository.save(image);
 }
 
 export async function createImageApiGatewayHandler(event: APIGatewayProxyEvent<CreateImageDTO>) {

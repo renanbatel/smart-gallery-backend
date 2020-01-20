@@ -3,7 +3,7 @@ updateImage:
   handler: src/update-image.apiGatewayHandler
   events:
     - http:
-        path: /images/{id}
+        path: /images/{imageId}
         method: patch
         cors: true
         authorizer: aws_iam

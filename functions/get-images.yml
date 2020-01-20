@@ -3,7 +3,7 @@ getImages:
   handler: src/get-images.apiGatewayHandler
   events:
     - http:
-        path: /images/{id}
+        path: /images
         method: get
         cors: true
         authorizer: aws_iam
