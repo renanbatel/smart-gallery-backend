@@ -12,11 +12,11 @@ export async function updateImage(imageId: string, image: ImageDTO) {
   const repository = await getRepository<Image>(Image);
   const update = await repository.update(imageId, image);
 
-  if (!update.raw.affectedRows) {
-    throw new createHttpError.NotFound(`No image found with the ID ${imageId}`);
+  if (update.raw.affectedRows) {
+    return repository.findOne(imageId);
   }
 
-  return repository.findOne(imageId);
+  throw new createHttpError.NotFound(`No image found with the ID ${imageId}`);
 }
 
 export async function updateImageApiGatewayHandler(event: APIGatewayProxyEvent<ImageDTO>) {
