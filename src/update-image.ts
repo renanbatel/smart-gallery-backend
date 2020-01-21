@@ -21,11 +21,9 @@ export async function updateImage(imageId: string, image: ImageDTO) {
 
 export async function updateImageApiGatewayHandler(event: APIGatewayProxyEvent<ImageDTO>) {
   const { imageId } = event.pathParameters;
-  const updated = await updateImage(imageId, event.bodyValidated);
+  const body = await updateImage(imageId, event.bodyValidated);
 
-  return {
-    body: updated,
-  };
+  return { body };
 }
 
 export const apiGatewayHandler = middy(updateImageApiGatewayHandler).use(validateSchema(ImageDTO, VGroup.UPDATE));
