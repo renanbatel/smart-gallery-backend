@@ -5,7 +5,7 @@ CREATE TABLE `image` (
   `description` text NULL,
   `labels` text NULL,
   `filename` varchar(50) NOT NULL,
-  `status` enum('active', 'inactive') NOT NULL DEFAULT 'active',
+  `status` enum('active', 'deleted') NOT NULL DEFAULT 'active',
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deletedAt` datetime DEFAULT NULL,
