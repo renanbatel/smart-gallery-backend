@@ -1,14 +1,21 @@
 import { Substitute } from '@fluffy-spoon/substitute';
-import sinon from 'sinon';
+import sinon, { SinonSpy } from 'sinon';
 
 import { APIGatewayProxyEvent } from '../../../lib/aws/types';
 import * as db from '../../../lib/db';
-import { imageBuilder } from '../../../lib/test-utils';
+import { buildImage } from '../../../lib/test-utils';
 import { createImage, createImageApiGatewayHandler } from '../../create-image';
 import { ImageDTO } from '../../dto';
+import { Image } from '../../models';
 
-const setUp = () => {
-  const data: ImageDTO = imageBuilder();
+type SetUpEntities = {
+  data: ImageDTO;
+  fakeSave: SinonSpy;
+  fakeGetRepository: SinonSpy;
+};
+
+const setUp = (): SetUpEntities => {
+  const data: ImageDTO = buildImage();
   const fakeSave = sinon.fake.resolves(data);
   const fakeGetRepository = sinon.fake.resolves({ save: fakeSave });
 
@@ -30,8 +37,9 @@ describe('src/create-image', () => {
       const { data, fakeSave, fakeGetRepository } = setUp();
       const image = await createImage(data);
 
-      sinon.assert.calledOnce(fakeSave);
       sinon.assert.calledOnce(fakeGetRepository);
+      sinon.assert.calledWith(fakeGetRepository, Image);
+      sinon.assert.calledOnce(fakeSave);
       expect(image).toEqual(data);
     });
   });

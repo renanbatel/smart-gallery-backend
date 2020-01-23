@@ -3,7 +3,7 @@ import uuid from 'uuid';
 
 import { ImageDTO } from '../../src/dto';
 
-export function imageBuilder(): ImageDTO {
+export function buildImage(): ImageDTO {
   const image: ImageDTO = new ImageDTO();
 
   image.title = faker.lorem.sentence();

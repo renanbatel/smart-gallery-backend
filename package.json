@@ -6,7 +6,7 @@
     "docker:up": "docker-compose up -d",
     "docker:clean": "docker-compose down && docker volume rm smart-gallery-backend_database",
     "local": "sls slstats --disable && sls offline start --stage=local --port=3000",
-    "test": "jest --runInBand --detectOpenHandles",
+    "test": "jest",
     "lint": "eslint --quiet '**/*.{t,j}s'",
     "format": "eslint --quiet --fix '**/*.{t,j}s'",
     "types:check": "tsc --noEmit",

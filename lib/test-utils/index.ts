@@ -1,1 +1,1 @@
-export * from './image-builder';
+export * from './build-image';
