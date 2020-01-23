@@ -17,11 +17,11 @@ export async function getImage(imageId: string) {
   return image;
 }
 
-export async function getImageApiGateway(event: APIGatewayProxyEvent) {
+export async function getImageApiGatewayHandler(event: APIGatewayProxyEvent) {
   const { imageId } = event.pathParameters;
   const body = await getImage(imageId);
 
   return { body };
 }
 
-export const apiGatewayHandler = middy(getImageApiGateway);
+export const apiGatewayHandler = middy(getImageApiGatewayHandler);
