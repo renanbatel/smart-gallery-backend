@@ -50,7 +50,7 @@ describe('src/deleteImage', () => {
     });
     it('should throw a 404 when no image has been found', async () => {
       const { id } = setUp(null);
-      let exception: HttpError = null;
+      let exception = null;
 
       try {
         await getImage(id);

@@ -15,7 +15,7 @@ type SetUpEntities = {
 };
 
 const setUp = (): SetUpEntities => {
-  const data: ImageDTO = buildImage();
+  const data = buildImage();
   const fakeSave = sinon.fake.resolves(data);
   const fakeGetRepository = sinon.fake.resolves({ save: fakeSave });
 
